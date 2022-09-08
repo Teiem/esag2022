@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ESAG</title>
+
+    <link rel="preload" href="./assets/SVG/g.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="./assets/SVG/h.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="./assets/SVG/s.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="./assets/SVG/r.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="./assets/WizardWorldSimplified-Kxr7.ttf" as="font"/>
+
     <style>
         @font-face {
             font-family: "potter";
@@ -21,7 +28,7 @@
                 <div class="imgContainer">
                     <img class="logo" src="./assets/SVG/g.svg" alt="">
                 </div>
-                <p class="points">0</p>
+                <p class="points">&nbsp;</p>
             </div>
             <div class="back">
                 <h1>Gryffindor</h1>
@@ -39,7 +46,7 @@
                 <div class="imgContainer">
                     <img class="logo" src="./assets/SVG/h.svg" alt="">
                 </div>
-                <p class="points">0</p>
+                <p class="points">&nbsp;</p>
             </div>
             <div class="back">
                 <h1>Hufflepuff</h1>
@@ -57,7 +64,7 @@
                 <div class="imgContainer">
                     <img class="logo" src="./assets/SVG/r.svg" alt="">
                 </div>
-                <p class="points">0</p>
+                <p class="points">&nbsp;</p>
             </div>
             <div class="back">
                 <h1>Ravenclaw</h1>
@@ -75,7 +82,7 @@
                 <div class="imgContainer">
                     <img class="logo" src="./assets/SVG/s.svg" alt="">
                 </div>
-                <p class="points">0</p>
+                <p class="points">&nbsp;</p>
             </div>
             <div class="back">
                 <h1>Slytherin</h1>
@@ -143,7 +150,7 @@
         transition: transform 0.2s ease-in-out;
     }
 
-    .house:hover > .front > :is(.points, .imgContainer) {
+    .house:hover:not(.bouncing) > .front > :is(.points, .imgContainer) {
         transform: translateY(-1rem);
     }
 
@@ -235,6 +242,7 @@
         text-align: center;
         font-family: "potter";
         font-size: 1.5vw;
+        text-transform: uppercase;
     }
 
     @keyframes points {
