@@ -11,45 +11,80 @@
             src: url(./assets/WizardWorldSimplified-Kxr7.ttf);
         }
     </style>
-    <script src="./js/data.ts" type="module" async defer></script>
+    <script src="./js/init.ts" type="module" async defer></script>
 </head>
 <body>
     <main>
         <div class="house" id="Gryffindor">
-            <h1>Gryffindor</h1>
-            <img src="./assets/SVG/g.svg" alt="">
-            <p class="points">0</p>
-            <!-- <div class="addYourPoints"> -->
-                <!-- <label for="input">Punkte für dein Team</label> -->
-                <!-- <input type="number" name="" id="input"> -->
-            <!-- </div> -->
+            <div class="front">
+                <h1>Gryffindor</h1>
+                <div class="imgContainer">
+                    <img class="logo" src="./assets/SVG/g.svg" alt="">
+                </div>
+                <p class="points">0</p>
+            </div>
+            <div class="back">
+                <h1>Gryffindor</h1>
+                <form>
+                    <label for="id1">Code für Punkte</label>
+                    <input type="text" name="Points" id="id1">
+                    <p class="error"></p>
+                </form>
+            </div>
         </div>
-        <div class="house" id="Slytherin">
-            <h1>Slytherin</h1>
-            <img src="./assets/SVG/s.svg" alt="">
-            <p class="points">0</p>
-            <!-- <div class="addYourPoints"> -->
-                <!-- <label for="input">Punkte für dein Team</label> -->
-                <!-- <input type="number" name="" id="input"> -->
-            <!-- </div> -->
-        </div>
-        <div class="house" id="Ravenclaw">
-            <h1>Ravenclaw</h1>
-            <img src="./assets/SVG/r.svg" alt="">
-            <p class="points">0</p>
-            <!-- <div class="addYourPoints"> -->
-                <!-- <label for="input">Punkte für dein Team</label> -->
-                <!-- <input type="number" name="" id="input"> -->
-            <!-- </div> -->
-        </div>
+
         <div class="house" id="Hufflepuff">
-            <h1>Hufflepuff</h1>
-            <img src="./assets/SVG/h.svg" alt="">
-            <p class="points">0</p>
-            <!-- <div class="addYourPoints"> -->
-                <!-- <label for="input">Punkte für dein Team</label> -->
-                <!-- <input type="number" name="" id="input"> -->
-            <!-- </div> -->
+            <div class="front">
+                <h1>Hufflepuff</h1>
+                <div class="imgContainer">
+                    <img class="logo" src="./assets/SVG/h.svg" alt="">
+                </div>
+                <p class="points">0</p>
+            </div>
+            <div class="back">
+                <h1>Hufflepuff</h1>
+                <form>
+                    <label for="id4">Code für Punkte</label>
+                    <input type="text" name="Points" id="id4">
+                    <p class="error"></p>
+                </form>
+            </div>
+        </div>
+
+        <div class="house" id="Ravenclaw">
+            <div class="front">
+                <h1>Ravenclaw</h1>
+                <div class="imgContainer">
+                    <img class="logo" src="./assets/SVG/r.svg" alt="">
+                </div>
+                <p class="points">0</p>
+            </div>
+            <div class="back">
+                <h1>Ravenclaw</h1>
+                <form>
+                    <label for="id3">Code für Punkte</label>
+                    <input type="text" name="Points" id="id3">
+                    <p class="error"></p>
+                </form>
+            </div>
+        </div>
+
+        <div class="house" id="Slytherin">
+            <div class="front">
+                <h1>Slytherin</h1>
+                <div class="imgContainer">
+                    <img class="logo" src="./assets/SVG/s.svg" alt="">
+                </div>
+                <p class="points">0</p>
+            </div>
+            <div class="back">
+                <h1>Slytherin</h1>
+                <form>
+                    <label for="id2">Code für Punkte</label>
+                    <input type="text" name="Points" id="id2">
+                    <p class="error"></p>
+                </form>
+            </div>
         </div>
     </main>
 </body>
@@ -59,6 +94,9 @@
 
     body {
         margin: 0;
+        background-color: #02121b;
+        color: white;
+        font-family: 'potter';
     }
 
     main {
@@ -67,45 +105,148 @@
 
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+        overflow: hidden;
     }
 
     .house {
+        position: relative;
+        transition: all 0.2s ease-in-out;
+        transform-style: preserve-3d;
+        /* perspective: 1000px; */
+    }
+
+    .front,
+    .back {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        backface-visibility: hidden;
+        /* padding-bottom: 10em; */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transition: all 0.2s ease-in-out;
+        filter: brightness(1) saturate(1);
+    }
+
+    .back {
+        transform: rotateY(180deg);
+    }
+
+    :is(.selected, .house:hover) > :is(.front, .back) {
+        filter: brightness(1.1) saturate(1.2);
+    }
+
+    .house > .front > :is(.points, .imgContainer) {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .house:hover > .front > :is(.points, .imgContainer) {
+        transform: translateY(-1rem);
+    }
+
+    .house .front * {
+        filter:
+            drop-shadow(2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02))
+            drop-shadow(6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028))
+            drop-shadow(12.5px 12.5px 10px rgba(0, 0, 0, 0.035))
+            drop-shadow(22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042))
+            drop-shadow(41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05))
+            drop-shadow(100px 100px 80px rgba(0, 0, 0, 0.07));
+    }
+
+    .house .imgContainer {
+        width: 75%;
+        height: 25vw;
+    }
+
+    .back {
+        background-color: red !important;
+    }
+
+    .house h1 {
+        position: absolute;
+        top: 0.5rem;
+    }
+
+    .house .points,
+    .house h1 {
+        font-size: 3vw;
+    }
+
+    #Gryffindor > :is(.front, .back) {
+        /* background-color: #5c2521;
+        background: linear-gradient(45deg, #4e201c 0%, #692b26 100%); */
+
+        background-color: #7f3131;
+        background: linear-gradient(45deg, #792b27 0%, #964d20 100%);
+    }
+
+    #Slytherin > :is(.front, .back) {
+        /* background-color: #255c49;
+        background: linear-gradient(45deg, #1d4738 0%, #2b6b55 100%); */
+
+        background-color: #007555;
+        background: linear-gradient(45deg, #024c35 0%, #01805a 100%);
+    }
+
+    #Ravenclaw > :is(.front, .back) {
+        /* background-color: #1f374f;
+        background: linear-gradient(45deg, #182b3d 0%, #25415e 100%); */
+
+        background-color: #006491;
+        background: linear-gradient(45deg, #014665 0%, #1e709c 100%);
+    }
+
+    #Hufflepuff > :is(.front, .back) {
+        /* background-color: #75500c;
+        background: linear-gradient(45deg, #68470b 0%, #855b0e 100%); */
+
+        background-color: #c68600;
+        background: linear-gradient(45deg, #966a00 0%, rgb(192, 167, 26) 100%);
+    }
+
+    .house.selected {
+        transform: rotateY(180deg);
+    }
+
+    form {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
     }
 
-    .house > * {
-        filter: drop-shadow(0.1rem 0.1rem .75rem #0004);
+    label {
+        font-size: 2vw;
     }
 
-    .house > img {
+    input {
+        outline: 0;
+        border: none;
         width: 75%;
-    }
-
-    .house > .points,
-    .house > h1 {
+        box-sizing: border-box;
+        border-radius: 1rem;
+        padding: 0.5rem;
+        margin-top: 1vw;
+        background: linear-gradient(45deg, #fff8 0%, #fffa 100%);
         text-align: center;
-        color: white;
-        font-family: 'potter';
-        font-size: 3vw;
+        font-family: "potter";
+        font-size: 1.5vw;
     }
 
-    #Gryffindor {
-        background-color: #5c2521;
-    }
-
-    #Slytherin {
-        background-color: #255c49;
-    }
-
-    #Ravenclaw {
-        background-color: #1f374f;
-    }
-
-    #Hufflepuff {
-        background-color: #75500c;
+    @keyframes points {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-1rem);
+        }
+        100% {
+            transform: translateY(0);
+        }
     }
 
     @media screen and (max-width: 801px) {
@@ -114,9 +255,21 @@
             grid-template-rows: repeat(2, 1fr);
         }
 
-        .house > .points,
-        .house > h1 {
+        .house .imgContainer {
+            height: 50vw;
+        }
+
+        .house > .front > .points,
+        .house > .front > h1 {
             font-size: 6vw;
+        }
+
+        label {
+            font-size: 4vw;
+        }
+
+        .imgContainer {
+            margin-top: 15vw;
         }
     }
 
